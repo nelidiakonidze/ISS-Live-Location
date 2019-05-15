@@ -22,7 +22,7 @@ class IssApi extends React.Component {
   componentDidMount() {
     this.fetchPeopleInSpace();
     this.fetchSpaceStation();
-    this.interval = setInterval(() => this.fetchSpaceStation(), 1000);
+    this.interval = setInterval(() => this.fetchSpaceStation(), 10000);
   }
 
   fetchSpaceStation = () => {
@@ -42,13 +42,26 @@ class IssApi extends React.Component {
   fetchPeopleInSpace = () => {
     fetch('https://cors-anywhere.herokuapp.com/http://api.open-notify.org/astros.json')
       .then(response => response.json())
-      .then(data =>
+      .then(data => {
         this.setState({
           numberOfPeople: data.number,
           people: data.people,
           isLoaded: true
-        }))
-      .catch(() => console.log('Error fetching astros data.'));
+        })
+      })
+      .catch(() => {
+        console.log('Error fetching astros data.');
+        this.setState({
+          numberOfPeople: 6,
+          people: [{ craft: "ISS", name: "Oleg Kononenko" },
+          { craft: "ISS", name: "David Saint-Jacques" },
+          { craft: "ISS", name: "Anne McClain" },
+          { craft: "ISS", name: "Alexey Ovchinin" },
+          { craft: "ISS", name: "Nick Hague" },
+          { craft: "ISS", name: "Christina Koch" }],
+          isLoaded: true
+        })
+      });
   }
 
 
