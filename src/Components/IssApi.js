@@ -20,6 +20,7 @@ class IssApi extends React.Component {
   }
 
   componentDidMount() {
+    this.fetchPeopleInSpace();
     this.fetchSpaceStation();
     this.interval = setInterval(() => this.fetchSpaceStation(), 1000);
   }
@@ -35,8 +36,11 @@ class IssApi extends React.Component {
           },
           isLoaded: true
         }))
-      .catch(() => console.log('Error fetching satellite data.'))
-      .then(fetch('https://cors-anywhere.herokuapp.com/http://api.open-notify.org/astros.json')
+      .catch(() => console.log('Error fetching satellite data.'));
+  }
+
+  fetchPeopleInSpace = () => {
+    fetch('https://cors-anywhere.herokuapp.com/http://api.open-notify.org/astros.json')
       .then(response => response.json())
       .then(data =>
         this.setState({
@@ -44,23 +48,23 @@ class IssApi extends React.Component {
           people: data.people,
           isLoaded: true
         }))
-      .catch(() => console.log('Error fetching astros data.')))
-}
+      .catch(() => console.log('Error fetching astros data.'));
+  }
 
 
   render() {
     return (
       <div>
-        <NightMap 
-              sateliteLocation={this.state.iss_position}
-              userLocation={this.props.userLocation}/>
-        <SpecsPanel 
-              sateliteLocation={this.state.iss_position} 
-              numberOfPeople={this.state.numberOfPeople}
-          />
-        <PeopleAPI 
-              people={this.state.people}
-          />
+        <NightMap
+          sateliteLocation={this.state.iss_position}
+          userLocation={this.props.userLocation} />
+        <SpecsPanel
+          sateliteLocation={this.state.iss_position}
+          numberOfPeople={this.state.numberOfPeople}
+        />
+        <PeopleAPI
+          people={this.state.people}
+        />
       </div>
     )
   }
