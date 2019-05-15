@@ -36,7 +36,7 @@ class IssApi extends React.Component {
           isLoaded: true
         }))
       .catch(() => console.log('Error fetching satellite data.'))
-      .then(fetch('http://api.open-notify.org/astros.json')
+      .then(fetch('https://cors-anywhere.herokuapp.com/http://api.open-notify.org/astros.json')
       .then(response => response.json())
       .then(data =>
         this.setState({
