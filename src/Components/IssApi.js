@@ -25,13 +25,13 @@ class IssApi extends React.Component {
   }
 
   fetchSpaceStation = () => {
-    fetch('https://cors-anywhere.herokuapp.com/http://api.open-notify.org/iss-now.json')
+    fetch('https://api.wheretheiss.at/v1/satellites/25544')
       .then(response => response.json())
       .then(data =>
         this.setState({
           iss_position: {
-            latitude: data.iss_position.latitude,
-            longitude: data.iss_position.longitude
+            latitude: data.latitude,
+            longitude: data.longitude
           },
           isLoaded: true
         }))
