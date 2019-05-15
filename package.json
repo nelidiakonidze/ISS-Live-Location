@@ -2,7 +2,7 @@
   "name": "iss-live-location",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://diakonidzeneli.github.io/ISS-Live-Location/.",
+  "homepage": "https://nelidiakonidze.github.io/ISS-Live-Location/.",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
